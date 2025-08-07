@@ -219,6 +219,11 @@ static const ulint OS_FILE_READ_WRITE = 444;
 static const ulint OS_FILE_READ_ALLOW_DELETE = 555;
 /** @} */
 
+#define TAU_JOURNAL 1
+#ifdef TAU_JOURNAL
+#define O_TAU_ATOMIC 040000000
+#endif
+
 /** Types for file create @{ */
 static const ulint OS_DATA_FILE = 100;
 static const ulint OS_LOG_FILE = 101;

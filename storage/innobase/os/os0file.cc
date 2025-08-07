@@ -3171,6 +3171,11 @@ pfs_os_file_t os_file_create_func(const char *name, ulint create_mode,
   }
 #endif /* O_SYNC */
 
+#ifdef TAU_JOURNAL
+  if (purpose == OS_DATA_FILE)
+    create_flag |= O_TAU_ATOMIC;
+#endif /* TAU_JOURNAL */
+
   bool retry;
 
   do {
