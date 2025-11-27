@@ -3172,7 +3172,8 @@ pfs_os_file_t os_file_create_func(const char *name, ulint create_mode,
 #endif /* O_SYNC */
 
 #ifdef TAU_JOURNAL
-  if (purpose == OS_DATA_FILE)
+  bool is_temp_file = (strstr(name, "ibtmp") != NULL) || (strstr(name, ".ibt") != NULL);
+  if (purpose == OS_DATA_FILE && !is_temp_file)
     create_flag |= O_TAU_ATOMIC;
 #endif /* TAU_JOURNAL */
 
